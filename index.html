@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vectors, Lines & Planes: Calm Study Page</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+:root{--bg:#f3f6f9;--card:#fff;--ink:#1d2733;--muted:#5b6876;--line:#dbe2e9;--warn:#fff4cf;--warnink:#6b4e00;--ex:#eef1f5;
+--c1:#2f63c8;--c2:#238a5c;--c3:#7352c9;--c4:#c26a10;--c5:#c13f6e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14191f;--card:#1c232b;--ink:#e6ecf2;--muted:#9aa7b4;--line:#2d3742;--warn:#3a3112;--warnink:#f1d98a;--ex:#252d37;
+--c1:#7aa2f5;--c2:#5fcf9c;--c3:#b196f2;--c4:#f0a352;--c5:#f08db1}}
+:root[data-theme="dark"]{--bg:#14191f;--card:#1c232b;--ink:#e6ecf2;--muted:#9aa7b4;--line:#2d3742;--warn:#3a3112;--warnink:#f1d98a;--ex:#252d37;
+--c1:#7aa2f5;--c2:#5fcf9c;--c3:#b196f2;--c4:#f0a352;--c5:#f08db1}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:20px 16px 56px}
+h1{font-size:1.7rem;line-height:1.25;margin:8px 0 6px}
+.lead{color:var(--muted);margin:0 0 18px}
+.calm{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:18px}
+.calm p{margin:0 0 8px}.calm p:last-child{margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;padding:3px 10px;border-radius:99px;background:color-mix(in srgb,var(--c) 14%,var(--card));border:1px solid color-mix(in srgb,var(--c) 45%,var(--card))}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c);display:inline-block}
+.prog{font-weight:700;margin:14px 0 10px}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--c2);transition:width .3s}
+.topic{--t:var(--c1);background:var(--card);border:1px solid var(--line);border-left:6px solid var(--t);border-radius:14px;margin:14px 0;overflow:hidden}
+.topic.done{opacity:.7}
+.topic>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:center;background:color-mix(in srgb,var(--t) 10%,var(--card))}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary:focus-visible,.sub>summary:focus-visible{outline:3px solid var(--t);outline-offset:-3px}
+.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--t);color:var(--card);display:grid;place-items:center;font-weight:700;font-size:.95rem}
+.ttl{font-weight:700;font-size:1.08rem;line-height:1.3;flex:1}
+.ttl small{display:block;font-weight:400;color:var(--muted);font-size:.85rem}
+.chev{transition:transform .2s;color:var(--t)}
+.topic[open]>summary .chev{transform:rotate(90deg)}
+.body{padding:4px 18px 16px}
+.one{border-left:4px solid var(--t);padding:6px 12px;margin:12px 0;background:color-mix(in srgb,var(--t) 8%,var(--card));border-radius:0 8px 8px 0}
+h3{font-size:1rem;margin:16px 0 6px;color:var(--t)}
+ol,ul{margin:6px 0;padding-left:22px}li{margin:4px 0}
+ol li::marker{color:var(--t);font-weight:700}
+.f{font-size:1.02rem;padding:8px 12px;margin:8px 0;background:var(--ex);border-radius:8px;overflow-x:auto;white-space:nowrap}
+.sub{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--ex)}
+.sub>summary{cursor:pointer;padding:9px 12px;font-weight:700;list-style:none}
+.sub>summary::-webkit-details-marker{display:none}
+.sub>summary::before{content:"+ ";color:var(--t)}
+.sub[open]>summary::before{content:"\2212  "}
+.sub .in{padding:2px 14px 12px}
+.warn{background:var(--warn);color:var(--warnink);border-radius:10px;padding:9px 13px;margin:12px 0;font-size:.97rem}
+.done-row{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.done-row input{width:22px;height:22px;accent-color:var(--t)}
+.plan li{margin:6px 0}
+b.v{font-weight:700}
+.tb{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+</style>
+</head>
+<body>
+<main>
+<h1>Vectors, Lines &amp; Planes: one small step at a time</h1>
+<p class="lead">Five topics. Tap a card to open it. Tick the box when you're done with it.</p>
+
+<div class="calm">
+<p><b>First, a breath.</b> Nothing here is new magic. Almost every problem on the list uses the same two moves: <b>subtract points to get a vector</b>, and <b>take a cross product to get a perpendicular vector</b>. If you know those two, you already know most of the test.</p>
+<p><b>Short on time?</b> For each topic, read only the <i>one-sentence idea</i> and the <i>steps</i>. Open the example only if you want to see it done.</p>
+</div>
+
+<div class="legend" aria-label="Color key">
+<span class="chip" style="--c:var(--c1)"><i></i>1 Proofs</span>
+<span class="chip" style="--c:var(--c2)"><i></i>2 Area &amp; volume</span>
+<span class="chip" style="--c:var(--c3)"><i></i>3 Lines</span>
+<span class="chip" style="--c:var(--c4)"><i></i>4 Skew or not</span>
+<span class="chip" style="--c:var(--c5)"><i></i>5 Planes</span>
+</div>
+<p style="color:var(--muted);font-size:.9rem;margin:6px 0 0">Inside each card: <b>colored</b> = the main idea and steps, <b style="background:var(--warn);color:var(--warnink);padding:0 6px;border-radius:5px">yellow</b> = watch out, <b style="background:var(--ex);padding:0 6px;border-radius:5px">gray</b> = optional examples.</p>
+
+<div class="prog"><span id="pt">0 of 5 topics done</span></div>
+<div class="bar"><span id="pb"></span></div>
+
+<!-- 1 -->
+<details class="topic" style="--t:var(--c1)" id="t1" open>
+<summary><span class="num">1</span><span class="ttl">Proving dot and cross product properties<small>About 5 minutes</small></span><span class="chev">&#9656;</span></summary>
+<div class="body">
+<div class="one"><b>The idea:</b> don't be clever. Write every vector in components, expand both sides, and show they match.</div>
+<h3>Know these two cold</h3>
+<div class="f"><b class="v">a</b> · <b class="v">b</b> = a₁b₁ + a₂b₂ + a₃b₃  (a number)</div>
+<div class="f"><b class="v">a</b> × <b class="v">b</b> = ⟨ a₂b₃ − a₃b₂ , a₃b₁ − a₁b₃ , a₁b₂ − a₂b₁ ⟩  (a vector)</div>
+<h3>Steps for any proof</h3>
+<ol>
+<li>Write each vector in components.</li>
+<li>Expand the <b>left side</b> using the definition.</li>
+<li>Expand the <b>right side</b> separately.</li>
+<li>If they match, write ∎ (it just means "done").</li>
+<li>If they don't look alike, regroup terms (for example, collect by c₁, c₂, c₃) and compare again.</li>
+</ol>
+<details class="sub"><summary>Example: <b class="v">a</b> · (<b class="v">b</b> + <b class="v">c</b>) = <b class="v">a</b> · <b class="v">b</b> + <b class="v">a</b> · <b class="v">c</b></summary><div class="in">
+<ol>
+<li>Add inside: <b class="v">b</b> + <b class="v">c</b> = ⟨b₁+c₁, b₂+c₂, b₃+c₃⟩</li>
+<li>Dot product: a₁(b₁+c₁) + a₂(b₂+c₂) + a₃(b₃+c₃)</li>
+<li>Distribute: a₁b₁ + a₁c₁ + a₂b₂ + a₂c₂ + a₃b₃ + a₃c₃</li>
+<li>Regroup: (a₁b₁ + a₂b₂ + a₃b₃) + (a₁c₁ + a₂c₂ + a₃c₃) = <b class="v">a</b> · <b class="v">b</b> + <b class="v">a</b> · <b class="v">c</b> ∎</li>
+</ol></div></details>
+<details class="sub"><summary>Example: <b class="v">a</b> · (<b class="v">b</b> × <b class="v">c</b>) = (<b class="v">a</b> × <b class="v">b</b>) · <b class="v">c</b></summary><div class="in">
+<ol>
+<li>Expand the left: a₁(b₂c₃ − b₃c₂) + a₂(b₃c₁ − b₁c₃) + a₃(b₁c₂ − b₂c₁)</li>
+<li>Regroup by c₁, c₂, c₃: (a₂b₃ − a₃b₂)c₁ + (a₃b₁ − a₁b₃)c₂ + (a₁b₂ − a₂b₁)c₃</li>
+<li>That is ⟨components of <b class="v">a</b> × <b class="v">b</b>⟩ · ⟨c₁, c₂, c₃⟩ = (<b class="v">a</b> × <b class="v">b</b>) · <b class="v">c</b> ∎</li>
+</ol></div></details>
+<div class="warn">⚠ Cross product is <b>not</b> commutative: <b class="v">a</b> × <b class="v">b</b> = −(<b class="v">b</b> × <b class="v">a</b>).</div>
+<label class="done-row"><input type="checkbox" data-t="t1"> I've got this one</label>
+</div>
+</details>
+
+<!-- 2 -->
+<details class="topic" style="--t:var(--c2)" id="t2">
+<summary><span class="num">2</span><span class="ttl">Area of a triangle or rectangle, volume of a parallelepiped<small>About 5 minutes</small></span><span class="chev">&#9656;</span></summary>
+<div class="body">
+<div class="one"><b>The idea:</b> the <i>length</i> of a cross product is an area, and the triple product is a volume.</div>
+<div class="tb"><table>
+<tr><td>Parallelogram</td><td>|<b class="v">a</b> × <b class="v">b</b>|</td></tr>
+<tr><td>Triangle</td><td>½ |<b class="v">a</b> × <b class="v">b</b>|</td></tr>
+<tr><td>Rectangle (perpendicular sides)</td><td>|<b class="v">a</b>| |<b class="v">b</b>|</td></tr>
+<tr><td>Parallelepiped</td><td>|<b class="v">a</b> · (<b class="v">b</b> × <b class="v">c</b>)|</td></tr>
+</table></div>
+<h3>Steps: triangle from three points</h3>
+<ol>
+<li>Edge vectors from P: PQ = Q − P, PR = R − P.</li>
+<li>Cross product PQ × PR.</li>
+<li>Find its length.</li>
+<li>Multiply by ½.</li>
+</ol>
+<h3>Steps: volume</h3>
+<ol>
+<li>Put the three vectors in the rows of a 3×3 determinant.</li>
+<li>Expand along row 1 with signs <b>+ − +</b>.</li>
+<li>Take the absolute value. <b>If it's 0, the vectors are coplanar.</b></li>
+</ol>
+<details class="sub"><summary>Example: triangle P(1,4,6), Q(−2,5,−1), R(1,−1,1)</summary><div class="in">
+<ol>
+<li>PQ = ⟨−3, 1, −7⟩, PR = ⟨0, −5, −5⟩</li>
+<li>PQ × PR = ⟨(1)(−5) − (−7)(−5), (−7)(0) − (−3)(−5), (−3)(−5) − (1)(0)⟩ = ⟨−40, −15, 15⟩</li>
+<li>Length: √(1600 + 225 + 225) = √2050 = 5√82</li>
+<li>Triangle: <b>(5/2)√82</b></li>
+</ol></div></details>
+<details class="sub"><summary>Example: are ⟨1,4,−7⟩, ⟨2,−1,4⟩, ⟨0,−9,18⟩ coplanar?</summary><div class="in">
+<ol>
+<li>1[(−1)(18) − (4)(−9)] = 1(18) = 18</li>
+<li>−4[(2)(18) − (4)(0)] = −4(36) = −144</li>
+<li>−7[(2)(−9) − (−1)(0)] = −7(−18) = 126</li>
+<li>18 − 144 + 126 = <b>0</b>, so they are coplanar.</li>
+</ol></div></details>
+<div class="warn">⚠ Don't forget the <b>½</b> for triangles and the <b>absolute value</b> for volume.</div>
+<label class="done-row"><input type="checkbox" data-t="t2"> I've got this one</label>
+</div>
+</details>
+
+<!-- 3 -->
+<details class="topic" style="--t:var(--c3)" id="t3">
+<summary><span class="num">3</span><span class="ttl">Equation of a line<small>About 4 minutes</small></span><span class="chev">&#9656;</span></summary>
+<div class="body">
+<div class="one"><b>The idea:</b> a line needs a <b>point</b> and a <b>direction</b>. Finding those two things is the whole problem.</div>
+<div class="f">x = x₀ + at,  y = y₀ + bt,  z = z₀ + ct   (point (x₀,y₀,z₀), direction ⟨a,b,c⟩)</div>
+<h3>If you're given two points P and Q</h3>
+<ol>
+<li>Direction = PQ = Q − P.</li>
+<li>Use P as the point.</li>
+<li>Fill in the template.</li>
+</ol>
+<h3>If it must be perpendicular to two vectors <b class="v">a</b> and <b class="v">b</b></h3>
+<ol>
+<li>Direction = <b class="v">a</b> × <b class="v">b</b>. (The cross product is perpendicular to both.)</li>
+<li>Use the point you were given.</li>
+<li>Check: direction · <b class="v">a</b> = 0 and direction · <b class="v">b</b> = 0.</li>
+</ol>
+<details class="sub"><summary>Example: through P(1,2,3) and Q(4,0,5)</summary><div class="in">
+<ol><li>Direction: ⟨3, −2, 2⟩</li><li><b>x = 1 + 3t, y = 2 − 2t, z = 3 + 2t</b></li><li>Check t = 1: (4, 0, 5) = Q ✓</li></ol></div></details>
+<details class="sub"><summary>Example: through (2,1,−1), perpendicular to ⟨1,2,0⟩ and ⟨0,1,3⟩</summary><div class="in">
+<ol><li>Cross: ⟨(2)(3) − (0)(1), (0)(0) − (1)(3), (1)(1) − (2)(0)⟩ = ⟨6, −3, 1⟩</li><li><b>x = 2 + 6t, y = 1 − 3t, z = −1 + t</b></li><li>Check: 6 − 6 + 0 = 0 ✓ and 0 − 3 + 3 = 0 ✓</li></ol></div></details>
+<div class="warn">⚠ Subtract <b>endpoint minus start</b>. A flipped sign flips the whole direction.</div>
+<label class="done-row"><input type="checkbox" data-t="t3"> I've got this one</label>
+</div>
+</details>
+
+<!-- 4 -->
+<details class="topic" style="--t:var(--c4)" id="t4">
+<summary><span class="num">4</span><span class="ttl">Do two lines intersect or are they skew?<small>About 5 minutes</small></span><span class="chev">&#9656;</span></summary>
+<div class="body">
+<div class="one"><b>The idea:</b> ask "is there <i>one point</i> on both lines?" Yes means intersecting. No (and not parallel) means skew.</div>
+<h3>Steps</h3>
+<ol>
+<li>Rename the parameters: <b>t</b> for line 1, <b>s</b> for line 2.</li>
+<li><b>Parallel?</b> Is one direction a multiple of the other? If yes, stop: parallel.</li>
+<li>Set x = x, y = y, z = z. That gives three equations.</li>
+<li>Solve <b>two</b> of them for t and s.</li>
+<li>Plug t and s into the <b>third</b>. Works? <b>Intersect.</b> Fails? <b>Skew.</b></li>
+</ol>
+<details class="sub"><summary>Example (skew): L₁ = (1+t, −2+3t, 4−t), L₂ = (2s, 3+s, −3+4s)</summary><div class="in">
+<ol>
+<li>Directions ⟨1,3,−1⟩ and ⟨2,1,4⟩ are not multiples.</li>
+<li>1 + t = 2s, and −2 + 3t = 3 + s</li>
+<li>From the first, t = 2s − 1. Into the second: 5s = 8, so s = 8/5, t = 11/5.</li>
+<li>Third equation: 4 − t = 9/5 but −3 + 4s = 17/5. Not equal, so <b>skew</b>.</li>
+</ol></div></details>
+<details class="sub"><summary>Example (intersect): L₁ = (1+t, 2+t, 3+2t), L₂ = (2s, 5−2s, 4+s)</summary><div class="in">
+<ol>
+<li>Not parallel.</li>
+<li>1 + t = 2s, and 2 + t = 5 − 2s. Subtract: 1 = 5 − 4s, so s = 1, t = 1.</li>
+<li>Third: 3 + 2(1) = 5 and 4 + 1 = 5 ✓</li>
+<li><b>Intersect</b> at (2, 3, 5).</li>
+</ol></div></details>
+<div class="warn">⚠ Use two <b>different</b> letters (t and s), and always test the <b>third</b> equation.</div>
+<label class="done-row"><input type="checkbox" data-t="t4"> I've got this one</label>
+</div>
+</details>
+
+<!-- 5 -->
+<details class="topic" style="--t:var(--c5)" id="t5">
+<summary><span class="num">5</span><span class="ttl">Equation of a plane through three points<small>About 4 minutes</small></span><span class="chev">&#9656;</span></summary>
+<div class="body">
+<div class="one"><b>The idea:</b> a plane needs a <b>point</b> and a <b>normal</b> (a vector sticking straight out of it). The cross product of two edges gives the normal.</div>
+<div class="f">a(x − x₀) + b(y − y₀) + c(z − z₀) = 0   with normal ⟨a, b, c⟩</div>
+<h3>Steps</h3>
+<ol>
+<li>PQ = Q − P and PR = R − P.</li>
+<li>Normal <b class="v">n</b> = PQ × PR. (Simplify by dividing out a common factor if you like.)</li>
+<li>Plug <b class="v">n</b> and P into the formula above.</li>
+<li>Expand to ax + by + cz = d.</li>
+<li>Check all three points in your answer.</li>
+</ol>
+<details class="sub"><summary>Example: P(1,0,0), Q(0,2,0), R(0,0,3)</summary><div class="in">
+<ol>
+<li>PQ = ⟨−1, 2, 0⟩, PR = ⟨−1, 0, 3⟩</li>
+<li>Normal = ⟨6, 3, 2⟩</li>
+<li>6(x − 1) + 3y + 2z = 0, so <b>6x + 3y + 2z = 6</b></li>
+<li>Check: 6 ✓, 3(2) = 6 ✓, 2(3) = 6 ✓</li>
+</ol></div></details>
+<details class="sub"><summary>Example: your triangle P(1,4,6), Q(−2,5,−1), R(1,−1,1)</summary><div class="in">
+<ol>
+<li>PQ × PR = ⟨−40, −15, 15⟩. Divide by −5: <b class="v">n</b> = ⟨8, 3, −3⟩</li>
+<li>8(x − 1) + 3(y − 4) − 3(z − 6) = 0, so <b>8x + 3y − 3z = 2</b></li>
+<li>Check Q: −16 + 15 + 3 = 2 ✓ and R: 8 − 3 − 3 = 2 ✓</li>
+</ol></div></details>
+<div class="warn">⚠ If the cross product comes out as ⟨0, 0, 0⟩, the three points are on one line, so no single plane exists.</div>
+<label class="done-row"><input type="checkbox" data-t="t5"> I've got this one</label>
+</div>
+</details>
+
+<div class="calm" style="margin-top:22px">
+<p><b>One last thing.</b> Making a small mistake on the test doesn't mean you don't know the material. If you freeze, write down the definition or the formula for what the problem asks about. That alone often unlocks the next step, and it usually earns partial credit too.</p>
+<p>You've prepared. Good luck.</p>
+</div>
+</main>
+<script>
+(function(){
+var boxes=document.querySelectorAll('.done-row input'),saved={};
+try{saved=JSON.parse(localStorage.getItem('calc3done')||'{}')}catch(e){}
+function upd(){
+ var n=0;
+ boxes.forEach(function(b){var d=document.getElementById(b.dataset.t);d.classList.toggle('done',b.checked);if(b.checked)n++});
+ document.getElementById('pt').textContent=n+' of 5 topics done'+(n===5?'. Nice work.':'');
+ document.getElementById('pb').style.width=(n*20)+'%';
+ var s={};boxes.forEach(function(b){s[b.dataset.t]=b.checked});
+ try{localStorage.setItem('calc3done',JSON.stringify(s))}catch(e){}
+}
+boxes.forEach(function(b){b.checked=!!saved[b.dataset.t];b.addEventListener('change',upd)});
+upd();
+})();
+</script>
+</body>
+</html>
